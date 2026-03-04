@@ -29,6 +29,7 @@ class CurrentRatio(AbstractCurrentRatio):
         print(f"Şirketin Cari Oran Değeri : {cari_oran_değeri}")
         return [cari_oran_değeri,category]
     def show_graph(self,df,category,tarih=["2025/12","2025/9","2025/6","2025/3"]):
+        plt.clf()
         current_ratio=[]
         donen_varlıklar=df[tarih[0]][1]
         kısa_vadeli_yükümlülükler=df[tarih[0]][31]
