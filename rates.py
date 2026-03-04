@@ -19,7 +19,7 @@ class AbstractCurrentRatio(ABC):
     def show_graph(self,df,category,tarih=["2025/12","2025/9","2025/6","2025/3"]):
         pass
     @abstractmethod
-    def analysis_gemini(self,df,category):
+    def analysis_gemini(self,df,category,model):
         pass
 class CurrentRatio(AbstractCurrentRatio):
     def calculate(self,df,category,tarih="2025/12"):
@@ -61,11 +61,11 @@ class CurrentRatio(AbstractCurrentRatio):
         plt.legend()
         return plt
 
-    def analysis_gemini(self,df,category):
+    def analysis_gemini(self,df,category,model):
         try:
             client=genai.Client(api_key=gemini_api)
-            response=client.models.generate_content(model="gemini-2.5-flash",
-            config=types.GenerateContentConfig(system_instruction=f"You are an quant trader and you want to explain basically what user said."),contents=f"Sen finansal danışmanlık hizmeti veren bir şirketin en üst düzey ve en profesyonel çalışanısın.Karşındaki kişi ise şirketlerin finansal tablolarını okumakta zorlanan küçük yatırımcı kitlesi.Sen şirketin cari oran değerlerine bakarak yatırımcıya şirketi anlatıyorsun : {df.head(100)} ,Yatırım yapılıp yapılmayacağını anlatıp bu değerin sektördeki rakip şirketlere göre konumunu gösteriyorsun.Şirketin sektörü ise {category}.Titiz ve profesyonel ol.Sana verdiğim dosyada bütün değerlere ulaşabilirsin sütunları dikkatli incele sana verdiğim dosyada KISA VADELİ YÜKÜMLÜLÜKLER kısmı da var!")
+            response=client.models.generate_content(model=model,
+            config=types.GenerateContentConfig(system_instruction=f"You are an quant trader and you want to explain basically what user said."),contents=f"Sen finansal danışmanlık hizmeti veren bir şirketin en üst düzey ve en profesyonel çalışanısın.Karşındaki kişi ise şirketlerin finansal tablolarını okumakta zorlanan küçük yatırımcı kitlesi.Sen şirketin cari oran değerlerine bakarak yatırımcıya şirketi anlatıyorsun : {df} ,Yatırım yapılıp yapılmayacağını anlatıp bu değerin sektördeki rakip şirketlere göre konumunu gösteriyorsun.Şirketin sektörü ise {category}.Titiz ve profesyonel ol.Sana verdiğim dosyada bütün değerlere ulaşabilirsin sütunları dikkatli incele sana verdiğim dosyada KISA VADELİ YÜKÜMLÜLÜKLER kısmı da var!")
             return response.text
         except ConnectionError as c_error:
             print(f"Internet connection error : {c_error}")
@@ -81,7 +81,7 @@ class AbstractFinancialLeverage(ABC):
     def show_financial_leverage(self,df,category,tarih=["2025/12","2025/9","2025/6","2025/3"]):
         pass
     @abstractmethod
-    def analysis_gemini(self,df,category):
+    def analysis_gemini(self,df,category,model):
         pass
 class FinancialLeverage(AbstractFinancialLeverage):
     def calculate(self,df,category,tarih="2025/12"):
@@ -120,11 +120,11 @@ class FinancialLeverage(AbstractFinancialLeverage):
         plt.grid()
         plt.legend()
         return plt
-    def analysis_gemini(self,df,category):
+    def analysis_gemini(self,df,category,model):
         try:
             client=genai.Client(api_key=gemini_api)
-            response=client.models.generate_content(model="gemini-2.5-flash",
-            config=types.GenerateContentConfig(system_instruction=f"You are an quant trader and you want to explain basically what user said."),contents=f"Sen finansal danışmanlık hizmeti veren bir şirketin en üst düzey ve en profesyonel çalışanısın.Karşındaki kişi ise şirketlerin finansal tablolarını okumakta zorlanan küçük yatırımcı kitlesi.Sen şirketin finansal kaldıraç değerlerine bakarak yatırımcıya şirketi anlatıyorsun : {df.head(100)} ,Yatırım yapılıp yapılmayacağını anlatıp bu değerin sektördeki rakip şirketlere göre konumunu gösteriyorsun.Şirketin sektörü ise {category}.Titiz ve profesyonel ol.Sana verdiğim dosyada bütün değerlere ulaşabilirsin sütunları dikkatli incele")
+            response=client.models.generate_content(model=model,
+            config=types.GenerateContentConfig(system_instruction=f"You are an quant trader and you want to explain basically what user said."),contents=f"Sen finansal danışmanlık hizmeti veren bir şirketin en üst düzey ve en profesyonel çalışanısın.Karşındaki kişi ise şirketlerin finansal tablolarını okumakta zorlanan küçük yatırımcı kitlesi.Sen şirketin finansal kaldıraç değerlerine bakarak yatırımcıya şirketi anlatıyorsun : {df} ,Yatırım yapılıp yapılmayacağını anlatıp bu değerin sektördeki rakip şirketlere göre konumunu gösteriyorsun.Şirketin sektörü ise {category}.Titiz ve profesyonel ol.Sana verdiğim dosyada bütün değerlere ulaşabilirsin sütunları dikkatli incele")
             return response.text
         except ConnectionError as c_error:
             print(f"Internet connection error : {c_error}")
@@ -141,7 +141,7 @@ class AbstractROE(ABC):
     def show_graph(self,df,category,tarih):
         pass
     @abstractmethod
-    def gemini_analysis(self,df,category,tarih):
+    def gemini_analysis(self,df,category,model):
         pass
 class ROE(AbstractROE):
     def calculate(self,df,category,tarih="2025/12"):
@@ -181,11 +181,11 @@ class ROE(AbstractROE):
         plt.grid()
         plt.legend()
         return plt
-    def gemini_analysis(self,df,category,tarih="2025/12"):
+    def gemini_analysis(self,df,category,model1):
         try:
             client=genai.Client(api_key=gemini_api)
-            response=client.models.generate_content(model="gemini-2.5-flash",
-            config=types.GenerateContentConfig(system_instruction=f"You are an quant trader and you want to explain basically what user said."),contents=f"Sen finansal danışmanlık hizmeti veren bir şirketin en üst düzey ve en profesyonel çalışanısın.Karşındaki kişi ise şirketlerin finansal tablolarını okumakta zorlanan küçük yatırımcı kitlesi.Sen şirketin ROE değerlerine bakarak yatırımcıya şirketi anlatıyorsun : {df.head(100)} ,Yatırım yapılıp yapılmayacağını anlatıp bu değerin sektördeki rakip şirketlere göre konumunu gösteriyorsun.Şirketin sektörü ise {category}.Titiz ve profesyonel ol.Sana verdiğim dosyada bütün değerlere ulaşabilirsin sütunları dikkatli incele")
+            response=client.models.generate_content(model=model1,
+            config=types.GenerateContentConfig(system_instruction=f"You are an quant trader and you want to explain basically what user said."),contents=f"Sen finansal danışmanlık hizmeti veren bir şirketin en üst düzey ve en profesyonel çalışanısın.Karşındaki kişi ise şirketlerin finansal tablolarını okumakta zorlanan küçük yatırımcı kitlesi.Sen şirketin ROE değerlerine bakarak yatırımcıya şirketi anlatıyorsun : {df} ,Yatırım yapılıp yapılmayacağını anlatıp bu değerin sektördeki rakip şirketlere göre konumunu gösteriyorsun.Şirketin sektörü ise {category}.Titiz ve profesyonel ol.Sana verdiğim dosyada bütün değerlere ulaşabilirsin sütunları dikkatli incele")
             return response.text
         except ConnectionError as c_error:
             print(f"Internet connection error : {c_error}")
