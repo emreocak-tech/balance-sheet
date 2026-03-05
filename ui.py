@@ -232,7 +232,18 @@ if check_box:
         st.info("Hisse fiyatının, şirketin bir hisseye düşen özsermayesine (defter değeri) bölünmesi.Şirketin bilançodaki varlıklarının kaç katı fiyattan satıldığını gösterir.")
         st.header("**Fiyat/Maddi Defter Değeri**")
         st.info("Bir üstteki oranın (F/DD) aynısıdır, ancak şirketin 'şerefiye' (markadeğeri, patent gibi soyut varlıklar) gibi maddi olmayan duran varlıkları hesaptan çıkarılır.Sadece fiziksel varlıklara (bina, arsa, makine) bakarak şirketin değerini ölçer.")
-
+    with tab3:
+        st.title("**Finansal Hesaplamalar Sayfasına Hoşgeldiniz**")
+        page1,page2,page3=st.tabs(["Aylık Bütçe Hesaplayıcı","Mevduat Faizi Hesaplama","Bireysel Emeklilik Birikim Hesaplama"])
+        with page1:
+            st.title("**Bütçe Hesaplama Sayfasına Hoşgeldiniz**")
+            st.info("Gerekli bilgileri girerken lütfen aylık değerleri girin!")
+            try:
+                salary=st.number_input("**Maaşınızı giriniz**",min_value=1,max_value=1000000,value=1)
+                bes=st.number_input("**BES Birikiminizi Giriniz**",min_value=1,max_value=10000,value=0)
+                
+            except Exception as except_error:
+                st.error(f"Exception Error : {except_error} , Try Again !")
 
 else:
     st.info("You have to accept contract")
