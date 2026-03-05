@@ -1,14 +1,14 @@
-#python -m streamlit run ui.py
 from dotenv import load_dotenv
 load_dotenv()
-import os
 import streamlit as st
 from Gemini import Utils
 import pandas as pd
-import numpy as np
 from rates import CurrentRatio
 from rates import FinancialLeverage
 from rates import ROE
+from financial_calculations import MonthlyBudgetCalculator
+from financial_calculations import DepositRate
+from financial_calculations import BES
 util=Utils()
 st.title("**Kullanıcı Sözleşmesi**")
 check_box=st.checkbox("UYARI: **Lütfen Okuyunuz !** Bu uygulama yalnızca bilgilendirme amaçlıdır ve yatırım tavsiyesi içermez.- Finansal piyasalarda işlem yapmak yüksek risk içerir ve sermaye kaybına yol açabilir.- Sağlanan tahminler ve analizler kesin sonuç vermez, yanılabilir.- Alacağınız tüm yatırım kararlarının sorumluluğu tamamen size aittir.- Uygulama geliştiricisi, kullanımdan kaynaklanan herhangi bir zarardan sorumlu değildir.- Yatırım kararı vermeden önce profesyonel bir finansal danışmana başvurmanız önerilir.")
@@ -236,14 +236,93 @@ if check_box:
         st.title("**Finansal Hesaplamalar Sayfasına Hoşgeldiniz**")
         page1,page2,page3=st.tabs(["Aylık Bütçe Hesaplayıcı","Mevduat Faizi Hesaplama","Bireysel Emeklilik Birikim Hesaplama"])
         with page1:
+            budget=MonthlyBudgetCalculator()
             st.title("**Bütçe Hesaplama Sayfasına Hoşgeldiniz**")
-            st.info("Gerekli bilgileri girerken lütfen aylık değerleri girin!")
+            st.success("**Gerekli bilgileri girerken lütfen aylık değerleri girin!**")
             try:
+                st.info("Gelir Bilgisi")
                 salary=st.number_input("**Maaşınızı giriniz**",min_value=1,max_value=1000000,value=1)
-                bes=st.number_input("**BES Birikiminizi Giriniz**",min_value=1,max_value=10000,value=0)
-                
+                bes=st.number_input("**BES Birikiminizi Giriniz**",min_value=1,max_value=10000,value=1)
+                other_incomes=st.number_input("**Diğer Gelirlerinizi Giriniz**",min_value=1,max_value=10000,value=1)
+                st.info("Gider Bilgisi")
+                credit=st.number_input("**Aylık Kredi Ödemelerinizi Giriniz**",min_value=1,max_value=100000,value=1)
+                total_tax=st.number_input("**Aylık Ödenen Vergi Miktarı**",min_value=1,max_value=10000,value=1)
+                invoice=st.number_input("**Aylık Ödediğiniz Toplam Fatura**",min_value=1,max_value=10000,value=1)
+                expenditure=st.number_input("**Aylık Keyfi Harcamalarınızı Giriniz**",min_value=1,max_value=10000,value=1)
+                buton=st.button("Aylık Gelir ve Gider Bilginiz için Tıklayınız",use_container_width=True)
+                if buton:
+                    informations=budget.calculate(salary,bes,other_incomes,credit, total_tax, invoice, expenditure)
+                    st.write(f"Aylık Net Durumunuz : {informations[0]}")
+                    st.write(f"Aylık Toplam Geliriniz : {informations[1]}")
+                    st.write(f"Aylık Toplam Gideriniz : {informations[2]}")
+                buton_four=st.button("Görselleştirmek İsterseniz Tıklayın",use_container_width=True)
+                if buton_four:
+                    graph=budget.show_graph(salary,bes,other_incomes,credit, total_tax, invoice, expenditure)
+                    st.pyplot(graph)
+            except ValueError as v_error:
+                st.error(f"Value Error : {v_error}, Please check the type of values!")
+            except ConnectionError as c_error:
+                st.error(f"Connection Error : {c_error}, Try Again!")
             except Exception as except_error:
                 st.error(f"Exception Error : {except_error} , Try Again !")
+        with page2:
+            st.title("**Mevduat Faizi Hesaplama Sayfasına Hoşgeldiniz**")
+            st.info("**Gerekli Bilgileri Eksiksiz Bir Şekilde Doldurunuz**")
+            st.info("**Zaman Katsayısı Paranızı Gün,Ay veya Yıllık Faize mi Koyduğunuzu Tanımlar**")
+            deposit_rate=DepositRate()
+            try:
+                capital=st.number_input("**Ana Paranızı Giriniz**",min_value=1,max_value=100000,value=1)
+                day=st.number_input("**Vade**",min_value=1,max_value=100000,value=1)
+                rate=st.number_input("**Faiz Oranını Giriniz**",min_value=1,max_value=15,value=1)
+                time_coefficient=st.selectbox("Zaman Katsayısını Giriniz",options=["36500","1200","100"])
+                buton=st.button("Mevduat Faizi Hesapla",use_container_width=True)
+                if buton:
+                    result=deposit_rate.calculate(capital, day, rate, time_coefficient)
+                    st.info("Vergi Kesilmemiş Hal Hesaplanmaktadır!")
+                    st.write(f"Faizden Kazandığınız Para : {result[0]}")
+                    st.write(f"Toplam Geliriniz : {result[1]}")
+                buton_graph=st.button("Mevduat Faizi Görselleştirme",use_container_width=True)
+                if buton_graph:
+                    graph=deposit_rate.show_graph(capital, day, rate, time_coefficient)
+                    st.pyplot(graph)
+            except ValueError as v_error:
+                st.error(f"Value Error : {v_error}, Please check the type of values!")
+            except ConnectionError as c_error:
+                st.error(f"Connection Error : {c_error}, Try Again!")
+            except Exception as except_error:
+                st.error(f"Exception Error : {except_error} , Try Again !")
+        with page3:
+            st.title("BES Hesaplama Sayfasına Hoşgeldiniz")
+            st.info("**Gerekli Bilgileri Eksiksiz Bir Şekilde Doldurmalısınız**")
+            bes=BES()
+            try:
+                min_age = st.number_input("Şuanki Yaşınızı Giriniz", min_value=18, max_value=55, value=26)
+                max_age = st.number_input("Emekli Olmak İstediğiniz Yaş", min_value=56, max_value=75, value=56)
+                annual_contribution = st.slider("Yıllık Katkı Payınızı Giriniz", min_value=0.1, max_value=10.0,value=0.1)
+                annual_yield = st.slider("Yıllık Verim", min_value=1, max_value=10, value=1)
+                capital = st.number_input("Sermayenizi Giriniz", min_value=1, max_value=1000000, value=1)
+                buton=st.button("BES Birikiminizi Hesaplayın",use_container_width=True)
+                if buton:
+                    result=bes.calculate(min_age, max_age, annual_contribution, annual_yield, capital)
+                    st.write(f"BES Kazancınız : {result}")
+                buton_graph=st.button("BES Grafiğiniz",use_container_width=True)
+                if buton_graph:
+                    image=bes.show_graph(min_age, max_age, annual_contribution, annual_yield, capital)
+                    st.pyplot(image)
+            except ValueError as v_error:
+                st.error(f"Value Error : {v_error}, Please check the type of values!")
+            except ConnectionError as c_error:
+                st.error(f"Connection Error : {c_error}, Try Again!")
+            except Exception as except_error:
+                st.error(f"Exception Error : {except_error} , Try Again !")
+
+
+
+
+
+
+
+
 
 else:
     st.info("You have to accept contract")
