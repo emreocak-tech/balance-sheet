@@ -1,0 +1,12 @@
+⚖️ YASAL UYARI VE SORUMLULUK REDDİ BEYANI
+1. Eğitim ve Bilgilendirme Amacı
+Bu uygulama ("Yazılım"), kullanıcıya finansal okuryazarlık kazandırmak ve bilanço verilerini teknik rasyolarla analiz etme yetisini geliştirmek amacıyla tamamen eğitim ve kişisel gelişim odaklı olarak geliştirilmiştir. Yazılım içerisinde sunulan hesaplamalar, grafikler ve yapay zeka (Gemini AI) tarafından üretilen yorumlar, herhangi bir yatırım aracına yönelik alım-satım performansı vaadi içermez.
+
+2. Yatırım Tavsiyesi Değildir (Disclaimer)
+Yazılımda yer alan hiçbir içerik, 6362 sayılı Sermaye Piyasası Kanunu ve ilgili mevzuat kapsamında "Yatırım Danışmanlığı" veya "Yatırım Tavsiyesi" niteliği taşımamaktadır. Yapay zeka tarafından üretilen analizler, geçmiş verilerin dil modelleri aracılığıyla işlenmesinden ibaret olup, gelecekteki piyasa hareketlerini tahmin etme garantisi sunmaz.
+
+3. Kullanıcı Sorumluluğu
+Yazılımın kullanımı sırasında yüklenen finansal tabloların doğruluğu ve bu veriler ışığında alınan tüm kararların hukuki, mali ve cezai sorumluluğu münhasıran kullanıcıya aittir. Kullanıcı, bu uygulamayı kullanarak; burada sunulan verilerle hareket etmesi sonucunda doğabilecek doğrudan veya dolaylı maddi/manevi zararlardan, kar mahrumiyetlerinden veya sermaye kayıplarından uygulama geliştiricisini hiçbir şekilde sorumlu tutmayacağını kabul, beyan ve taahhüt eder.
+
+4. Veri Doğruluğu ve Risk Uyarısı
+Finansal piyasalarda işlem yapmak yüksek risk içerir. Yazılım tarafından hesaplanan rasyolar (Cari Oran, ROE vb.) matematiksel formüllere dayanmakla birlikte, veri girişindeki hatalar veya sistem kısıtları nedeniyle sapmalar gösterebilir. Nihai yatırım kararlarının, yetkili yatırım danışmanları ve SPK lisanslı kurumlar aracılığıyla alınması şiddetle önerilir.
