@@ -3,6 +3,8 @@
 🚀 QuantAnalysis AI: Financial Intelligence Platform
 This project is an end-to-end FinTech solution designed to analyze corporate financial statements, provide ratio-based insights, and interpret complex data using Gemini AI integration. It bridges the gap between raw balance sheet data and actionable investment intelligence.
 
+Link of application : https://balance-sheet-qb2x9kqofdxs8dqc8xf4gz.streamlit.app/
+
 🌟 Key Objectives
 To simplify financial statement analysis for individual investors.
 
