@@ -16,7 +16,94 @@ if check_box:
     st.header("Kullanıcı Sözleşmesi Kabul Edildi!")
     asd1,asd2,asd3,asd4=st.sidebar.tabs(["Hakkında","Bilgiler","Gemini Sohbet Botu","Döviz Kuru"])
     with asd1:
-        st.write("""Günümüzde finansal verilere ulaşmak hiç olmadığı kadar kolay, ancak bu verileri doğru okumak ve anlamlandırmak özellikle küçük yatırımcılar için büyük bir zorluk teşkil ediyor. Bu proje, finansal okuryazarlığı artırmayı ve veriye dayalı daha bilinçli finansal kararlar almayı kolaylaştırmayı hedefler.Uygulama, iki temel ihtiyaca cevap vermek üzere tasarlanmıştır:1. Şirket Finansal Analizi (Kurumsal Modül):Kullanıcılar, bir şirketin (örneğin Halkbank) ham bilanço verilerini yükleyerek anında önemli finansal oranları hesaplayabilir. Bu modül sayesinde:Şirketin likidite durumu (Cari Oran) analiz edilir.Şirketin borçluluk düzeyi (Finansal Kaldıraç Oranı) incelenir.Şirketin ortaklarına sağladığı getiri (ROE - Özsermaye Kârlılığı) ölçülür.Tüm bu hesaplamalar, Google'ın Gemini yapay zeka modeli ile entegre edilerek kullanıcıya sade bir dille açıklanır. Yapay zeka, ilgili sektörü de dikkate alarak şirketin finansal durumu hakkında genel bir yorum sunar.2. Kişisel Finans Yönetimi (Bireysel Modül):Kullanıcıların kendi kişisel finanslarını yönetmelerine yardımcı olacak araçlar sunar:Aylık Bütçe Hesaplayıcı: Gelir ve giderlerinizi takip ederek aylık net durumunuzu hesaplar ve görselleştirir.Mevduat Faizi Hesaplayıcı: Ana para, vade ve faiz oranına göre mevduat getirisi hesaplar.BES (Bireysel Emeklilik Sistemi) Birikim Hesaplayıcı: Yaş, katkı payı ve yıllık getiri oranlarına göre emeklilik döneminde oluşacak birikimi projekte eder.Teknoloji ve Geliştirme:Proje, kullanıcı dostu bir arayüz için Streamlit ile geliştirilmiş olup, veri analizi için Pandas ve görselleştirme için Matplotlib kütüphanelerini kullanmaktadır. Gelişmiş dil modeli entegrasyonu ile kullanıcı deneyimi zenginleştirilmiştir. Proje sürekli geliştirilmekte olup, gelecekte yeni finansal oranlar ve analiz araçlarıyla genişletilmesi planlanmaktadır.""")
+        st.write("""👋 Merhaba! Finansal Analiz Asistanınıza Hoş Geldiniz!
+Bu uygulama, finansal verilerin karmaşık dünyasını sadeleştirmek ve herkesin anlayabileceği hale getirmek için tasarlandı. İster küçük bir yatırımcı olun, ister finansal okuryazarlığınızı geliştirmek isteyen meraklı bir kullanıcı... Bu proje tam size göre! 🎯
+🎭 Peki Bu Uygulama Tam Olarak Ne İşe Yarıyor?
+Uygulamamız üç ana bölümden oluşuyor:
+
+1. 📈 Bilanço Analizi (Şirket Doktoru)
+Şirketlerin ham bilanço verilerini yükleyin, biz size şirketin sağlık raporunu çıkaralım!
+
+🩺 Cari Oran: Şirketin "acil durum" nakdi yeterli mi? (Kısa vadeli borç ödeme gücü)
+
+⚖️ Finansal Kaldıraç: Şirket ne kadar borçlu? Riskli bölgede mi?
+
+💰 ROE (Özsermaye Kârlılığı): Ortakların parası iyi mi değerlendiriliyor?
+
+
+2. 🎓 Nasıl Bilanço Okurum? (Finansal Eğitim Köşesi)
+F/K, F/DD, PD/DD... Bu terimler size de Çince geliyor mu? Merak etmeyin!
+
+Her terimi Türkçe, anlaşılır bir dille açıklıyoruz
+
+Örneklerle pekiştiriyoruz
+
+Ezber değil, anlama odaklı! 🧠
+
+
+3. 💸 Genel Finansal Hesaplamalar (Cebinize Bakan Köşe)
+Kendi kişisel finansınızı yönetmenize yardımcı olacak araçlar:
+
+📊 Aylık Bütçe Hesaplayıcı: "Para nereye gidiyor?" sorusuna son!
+
+🏦 Mevduat Faizi Hesaplama: Paranız bankada ne kadar kazanır? Hemen görün!
+
+🌅 BES Birikim Hesaplama: Emeklilikte sizi ne bekliyor? Geleceğe yolculuk yapın!
+
+
+
+🤖 Yapay Zeka Desteği (Gemini)
+Sadece hesaplamakla kalmıyor, yapay zeka ile yorumluyoruz! Google'ın güçlü Gemini AI modeli sayesinde:
+
+"Bu cari oran iyi mi kötü mü?" diye düşünmenize gerek yok! 🤔
+
+Gemini size şirketin sektörünü de dikkate alarak profesyonel bir danışman gibi açıklama yapıyor
+
+İstediğiniz her soruyu Gemini Sohbet Botu'na sorabilirsiniz
+
+
+⚙️ Teknik Altyapı (Arkaplanda Neler Dönüyor?)
+🔧 Python → Kalbinde Python atıyor
+🎨 Streamlit → Göze hitap eden arayüz
+📊 Pandas & Matplotlib → Veri işleme ve görselleştirme
+🧠 Google Gemini AI → Akıllı yorumlama
+🌐 ExchangeRate-API → Anlık döviz kurları
+
+
+
+⚠️ Önemli Uyarı (Lütfen Okuyun!)
+🚨 Bu uygulama yatırım tavsiyesi vermez!
+
+Burada yapılan tüm hesaplamalar ve yorumlar bilgilendirme amaçlıdır. Gerçek yatırım kararlarınız için mutlaka profesyonel finansal danışmanlara başvurun. Unutmayın, finansal piyasalar risk içerir ve geçmiş performans gelecek için garanti vermez. 📉
+
+
+
+🌟 Neden Bu Uygulama?
+✅ Tamamen ücretsiz
+✅ Kullanıcı dostu arayüz
+✅ Yapay zeka destekli yorumlama
+✅ Sürekli güncellenen içerikler
+✅ Türkçe dil desteği
+✅ Eğitici ve öğretici yaklaşım
+
+
+
+
+
+📬 İletişim & Geri Bildirim
+Uygulamayı beğendiniz mi? Geliştirme önerileriniz mi var? Bir hata mı buldunuz?
+
+⭐ Projeyi beğendiyseniz yıldız vermeyi unutmayın!
+💬 Geri bildirimleriniz bizim için çok değerli!
+
+
+
+Versiyon: 1.0.0 🚀
+Son Güncelleme: Mart 2026 📅
+Geliştirici: Emre Ocak
+
+
+""")
     with asd2:
         st.write("""📊 Proje Hakkında Teknik Bilgiler
 Bu proje, finansal okuryazarlığı artırmak ve yatırımcıların şirket bilançolarını daha iyi anlamalarını sağlamak amacıyla geliştirilmiş çok modüllü bir finansal analiz uygulamasıdır.
@@ -82,7 +169,9 @@ Tüm hesaplamalar bilgilendirme amaçlıdır, yatırım tavsiyesi niteliği taş
 
 
 Versiyon: 1.0.0
+
 Son Güncelleme: Mart 2026
+
 Geliştirici: Emre Ocak
 
 """)
