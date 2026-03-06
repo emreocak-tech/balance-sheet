@@ -16,9 +16,76 @@ if check_box:
     st.header("Kullanıcı Sözleşmesi Kabul Edildi!")
     asd1,asd2,asd3,asd4=st.sidebar.tabs(["Hakkında","Bilgiler","Gemini Sohbet Botu","Döviz Kuru"])
     with asd1:
-        st.write("İyi bir proje şimdilik")
+        st.write("""Günümüzde finansal verilere ulaşmak hiç olmadığı kadar kolay, ancak bu verileri doğru okumak ve anlamlandırmak özellikle küçük yatırımcılar için büyük bir zorluk teşkil ediyor. Bu proje, finansal okuryazarlığı artırmayı ve veriye dayalı daha bilinçli finansal kararlar almayı kolaylaştırmayı hedefler.Uygulama, iki temel ihtiyaca cevap vermek üzere tasarlanmıştır:1. Şirket Finansal Analizi (Kurumsal Modül):Kullanıcılar, bir şirketin (örneğin Halkbank) ham bilanço verilerini yükleyerek anında önemli finansal oranları hesaplayabilir. Bu modül sayesinde:Şirketin likidite durumu (Cari Oran) analiz edilir.Şirketin borçluluk düzeyi (Finansal Kaldıraç Oranı) incelenir.Şirketin ortaklarına sağladığı getiri (ROE - Özsermaye Kârlılığı) ölçülür.Tüm bu hesaplamalar, Google'ın Gemini yapay zeka modeli ile entegre edilerek kullanıcıya sade bir dille açıklanır. Yapay zeka, ilgili sektörü de dikkate alarak şirketin finansal durumu hakkında genel bir yorum sunar.2. Kişisel Finans Yönetimi (Bireysel Modül):Kullanıcıların kendi kişisel finanslarını yönetmelerine yardımcı olacak araçlar sunar:Aylık Bütçe Hesaplayıcı: Gelir ve giderlerinizi takip ederek aylık net durumunuzu hesaplar ve görselleştirir.Mevduat Faizi Hesaplayıcı: Ana para, vade ve faiz oranına göre mevduat getirisi hesaplar.BES (Bireysel Emeklilik Sistemi) Birikim Hesaplayıcı: Yaş, katkı payı ve yıllık getiri oranlarına göre emeklilik döneminde oluşacak birikimi projekte eder.Teknoloji ve Geliştirme:Proje, kullanıcı dostu bir arayüz için Streamlit ile geliştirilmiş olup, veri analizi için Pandas ve görselleştirme için Matplotlib kütüphanelerini kullanmaktadır. Gelişmiş dil modeli entegrasyonu ile kullanıcı deneyimi zenginleştirilmiştir. Proje sürekli geliştirilmekte olup, gelecekte yeni finansal oranlar ve analiz araçlarıyla genişletilmesi planlanmaktadır.""")
     with asd2:
-        st.write("Bilançoyu Analiz Etmemi Sağlıyor Bu Proje :)")
+        st.write("""📊 Proje Hakkında Teknik Bilgiler
+Bu proje, finansal okuryazarlığı artırmak ve yatırımcıların şirket bilançolarını daha iyi anlamalarını sağlamak amacıyla geliştirilmiş çok modüllü bir finansal analiz uygulamasıdır.
+🚀 Kullanılan Teknolojiler
+Teknoloji	Kullanım Amacı
+Python 3.11+	Ana programlama dili
+Streamlit	Web arayüzü ve kullanıcı etkileşimi
+Pandas	Bilanço verilerinin işlenmesi ve analizi
+Matplotlib	Finansal grafiklerin oluşturulması
+Google Gemini AI	Finansal oranların yapay zeka ile yorumlanması
+ExchangeRate-API	Güncel döviz kuru bilgisi
+OpenPyXL	Excel dosyalarının okunması
+Python-dotenv	Çevre değişkenlerinin yönetimi
+
+📁 Proje Yapısı ve Modüller
+1. Bilanço Analiz Modülü (rates.py)
+Cari Oran Analizi: Şirketin kısa vadeli borç ödeme gücünü ölçer
+
+Finansal Kaldıraç: Şirketin borçluluk düzeyini analiz eder
+
+ROE (Özsermaye Kârlılığı): Ortakların yatırım getirisini hesaplar
+
+Çeyreklik bazda zamansal değişim grafikleri
+
+Gemini AI ile sektörel karşılaştırmalı analiz
+
+2. Kişisel Finans Modülü (financial_calculations.py)
+Aylık Bütçe Hesaplayıcı: Gelir-gider takibi ve net durum analizi
+
+Mevduat Faizi Hesaplama: Günlük, aylık ve yıllık faiz getirisi
+
+BES Birikim Hesaplama: Emeklilik dönemi projeksiyonu
+
+3. Yardımcı Araçlar (Gemini.py)
+Gemini AI Entegrasyonu: Finansal yorumlama ve soru-cevap
+
+Döviz Kuru API: Anlık USD/TRY kuru bilgisi
+
+
+💡 Projenin Sunduğu Değerler
+Karmaşık bilanço verilerini basit ve anlaşılır oranlara dönüştürür
+
+Zamansal değişimleri görsel grafiklerle sunar
+
+Yapay zeka desteği ile finansal terimleri ve oranları açıklar
+
+Sektörel karşılaştırma imkanı sağlar
+
+Kişisel finans yönetimi için pratik araçlar sunar
+
+
+
+📌 Notlar
+Bilanço analizi için Halkbank formatındaki Excel dosyaları kullanılmalıdır
+
+Gemini AI analizleri için Google Gemini API anahtarı gereklidir
+
+Döviz kuru bilgisi için ExchangeRate-API anahtarı gereklidir
+
+Tüm hesaplamalar bilgilendirme amaçlıdır, yatırım tavsiyesi niteliği taşımaz
+
+
+
+
+Versiyon: 1.0.0
+Son Güncelleme: Mart 2026
+Geliştirici: Emre Ocak
+
+""")
     with asd3:
         text=st.text_input("You can ask a question")
         buton=st.button("Gemini")
